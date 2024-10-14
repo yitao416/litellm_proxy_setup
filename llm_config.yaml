@@ -1,0 +1,25 @@
+model_list: 
+  - model_name: fireworks-llama-v3p1-70b-instruct
+    litellm_params:
+      model: fireworks_ai/accounts/fireworks/models/llama-v3p1-70b-instruct
+      api_key: os.environ/FIREWORKS_AI_API_KEY
+
+  - model_name: fireworks-nomic-embed-text-v1.5
+    litellm_params:
+      model: fireworks_ai/nomic-ai/nomic-embed-text-v1.5
+      api_key: os.environ/FIREWORKS_AI_API_KEY
+
+# custom api key
+# general_settings:
+#   master_key: sk-1234
+
+litellm_settings:
+  num_retries: 2 # retry call 3 times on each model_name (e.g. zephyr-beta)
+  request_timeout: 10 # raise Timeout error if call takes longer than 10s. Sets litellm.request_timeout 
+  # allowed_fails: 2 # cooldown model if it fails > 1 call in a minute. 
+  set_verbose: False
+  success_callback: ["langfuse"]
+  cache: true 
+  cache_params:        # set cache params for redis
+    type: redis
+    ttl: 432000 # will be cached on redis for 432000 seconds = 120 hours
