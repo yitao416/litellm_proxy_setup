@@ -71,7 +71,7 @@ After this setup, the connection string is: `postgresql://[yourusername]@host.do
 ### Set up langfuse server
 
 ```bash
-docker pull langfuse/langfuse:latest
+docker pull langfuse/langfuse:2.93.3
 
 docker run --name langfuse \
 -e DATABASE_URL=postgresql://[yourusername]@host.docker.internal:5432/langfuse_db \
@@ -81,7 +81,7 @@ docker run --name langfuse \
 -e ENCRYPTION_KEY=0000000000000000000000000000000000000000000000000000000000000000 \ # generate via: openssl rand -hex 32
 -p 3000:3000 \
 -a STDOUT \
-langfuse/langfuse
+langfuse/langfuse:2.93.3
 ```
 
 Then you can open the browser and go to http://localhost:3000/. Register a new account and setup a new organization and project. It will show the public key and secret key, which you will need to set in the environment variables.
